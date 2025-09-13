@@ -38,7 +38,7 @@ class ApiController extends Controller
         // user check email
         $user = User::Where("email", $request->email) ->first();
 
-        if ($user) {
+        if (!empty($user)) {
 
             // check password
             if(Hash::check($request->password, $user->password)) {
@@ -53,9 +53,13 @@ class ApiController extends Controller
                 return response()->json([
                     "status"=> false,
                     "message"=> "Password does not match",
-                
                 ]);
             }
+        } else {
+            return response()->json([
+                "status"=> false,
+                "message"=> "Email does not exist",
+            ]);
         }
     }
 

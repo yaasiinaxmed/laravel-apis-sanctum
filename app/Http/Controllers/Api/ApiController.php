@@ -49,7 +49,13 @@ class ApiController extends Controller
                     "message"=> "User Logged In Successfully",
                     "token" => $token,
                 ]);
-            };
+            } else {
+                return response()->json([
+                    "status"=> false,
+                    "message"=> "Password does not match",
+                
+                ]);
+            }
         }
     }
 

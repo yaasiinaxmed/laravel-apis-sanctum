@@ -30,9 +30,8 @@ class ApiController extends Controller
     public function login(Request $request) {
 
         $request->validate([
-            "name"=> "required|string",
-            "email"=> "required|email|unique:users,email",
-            "password"=> "required|confirmed",
+            "email"=> "required|email|exists:users,email",
+            "password"=> "required",
         ]);
 
         // user check email

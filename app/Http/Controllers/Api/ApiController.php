@@ -64,6 +64,13 @@ class ApiController extends Controller
 
     // Profile API
     public function profile() {
+        $userdata = auth() -> user();
+
+        return response()->json([
+            "status"=> true,
+            "message"=> "User Profile Data",
+            "data"=> $userdata,
+        ]);
 
     }
 
